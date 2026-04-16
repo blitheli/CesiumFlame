@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔥 CesiumFlame - Rocket Engine Exhaust</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body, #cesiumContainer { width: 100%; height: 100%; overflow: hidden; }
+
+    /* Control Panel */
+    #controls {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      background: rgba(10, 10, 30, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 120, 40, 0.3);
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      min-width: 280px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    #controls h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #ff8844;
+      border-bottom: 1px solid rgba(255, 120, 40, 0.2);
+      padding-bottom: 8px;
+    }
+    .ctrl-group {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ctrl-group label {
+      flex: 0 0 110px;
+      color: #aaa;
+    }
+    .ctrl-group input[type="range"] {
+      flex: 1;
+      margin: 0 8px;
+      accent-color: #ff6622;
+    }
+    .ctrl-group .val {
+      flex: 0 0 42px;
+      text-align: right;
+      color: #ff8844;
+      font-weight: bold;
+      font-variant-numeric: tabular-nums;
+    }
+    .ctrl-group select {
+      flex: 1;
+      margin-left: 8px;
+      background: rgba(30, 30, 50, 0.8);
+      border: 1px solid rgba(255, 120, 40, 0.3);
+      color: #e0e0e0;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    button.ctrl-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+      background: linear-gradient(135deg, #ff6622, #ff3300);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button.ctrl-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 2px 16px rgba(255, 80, 0, 0.5);
+    }
+    #info {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: rgba(10, 10, 30, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 120, 40, 0.2);
+      border-radius: 8px;
+      padding: 8px 20px;
+      color: #aaa;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+
+  <div id="controls">
+    <h2>🔥 火箭发动机尾焰</h2>
+
+    <div class="ctrl-group">
+      <label>发动机推力</label>
+      <input type="range" id="thrust" min="0.1" max="3.0" step="0.1" value="1.0" />
+      <span class="val" id="thrustVal">1.0</span>
+    </div>
+
+    <div class="ctrl-group">
+      <label>尾焰长度</label>
+      <input type="range" id="plumeLength" min="0.5" max="5.0" step="0.1" value="2.0" />
+      <span class="val" id="plumeLengthVal">2.0</span>
+    </div>
+
+    <div class="ctrl-group">
+      <label>排放速率</label>
+      <input type="range" id="emissionRate" min="50" max="800" step="10" value="300" />
+      <span class="val" id="emissionRateVal">300</span>
+    </div>
+
+    <div class="ctrl-group">
+      <label>烟雾浓度</label>
+      <input type="range" id="smokeIntensity" min="0" max="100" step="5" value="40" />
+      <span class="val" id="smokeIntensityVal">40</span>
+    </div>
+
+    <div class="ctrl-group">
+      <label>飞行速度</label>
+      <input type="range" id="rocketSpeed" min="0.5" max="10.0" step="0.5" value="3.0" />
+      <span class="val" id="rocketSpeedVal">3.0</span>
+    </div>
+
+    <div class="ctrl-group">
+      <label>发动机类型</label>
+      <select id="engineType">
+        <option value="liquid">液体发动机 (LOX/RP-1)</option>
+        <option value="solid">固体发动机 (SRB)</option>
+        <option value="hydrolox">氢氧发动机 (LOX/LH2)</option>
+        <option value="methalox">甲烷发动机 (LOX/CH4)</option>
+      </select>
+    </div>
+
+    <button class="ctrl-btn" id="toggleFlight">▶ 开始飞行</button>
+    <button class="ctrl-btn" id="resetView" style="background: linear-gradient(135deg, #4466aa, #335599);">🔄 重置视角</button>
+  </div>
+
+  <div id="info">
+    按住鼠标左键旋转 · 滚轮缩放 · 右键平移 · 滑块控制尾焰参数
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
