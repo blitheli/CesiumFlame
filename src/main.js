@@ -8,7 +8,7 @@ import { RocketExhaust } from './RocketExhaust.js';
 // ──────────────────────────────────────────
 // Cesium Ion Token (demo token, replace with yours)
 // ──────────────────────────────────────────
-Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYmMyNjY0Yy0xYmE1LTRiNTgtOGNjNy1kMjJiNGIxZTRlMTAiLCJpZCI6MjU5LCJpYXQiOjE3NDQ3MTgxODF9.pIPEolmvKJCL5_MheS4D-0Xro6eGHwGPmc26gGISKnM';
+Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4M2ZhYzM4My1lN2NhLTRjNTktODY1OC1jZDdmOTU3Y2ZjMGEiLCJpZCI6MTMwNTAsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NjI0NzA5NzB9.rRTs6chsWJdo9KNYe5VjJj2fUzMHeniIJvFQOd0aLJU';
 
 // ──────────────────────────────────────────
 // Initialize Viewer
